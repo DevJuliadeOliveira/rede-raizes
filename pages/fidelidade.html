@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fidelidade — Rede Raízes</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <header class="cabecalho-site">
+
+    <div class="conteudo-cabecalho">
+
+      <a class="logotipo" href="cardapio.html">
+        Rede Raízes
+      </a>
+
+      <nav class="navegacao">
+
+        <a href="cardapio.html">
+          Cardápio
+        </a>
+
+        <a href="fidelidade.html">
+          Fidelidade
+        </a>
+
+        <a href="minha-conta.html">
+          Minha Conta
+        </a>
+
+      </nav>
+
+      <div class="lado-direito-cabecalho">
+
+        <a href="carrinho.html">
+          🛒 Carrinho
+          [<span class="quantidade-carrinho">0</span>]
+        </a>
+
+        <a href="minha-conta.html">
+          👤
+          <span class="nome-usuario">Entrar</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main class="conteudo">
+
+    <section class="secao-pagina">
+
+      <h1>
+        Fidelidade e Recompensas
+      </h1>
+
+
+      <!-- Pontos -->
+
+      <div class="cartao">
+
+        <p class="texto-secundario">
+          Seus pontos
+        </p>
+
+        <strong
+          id="pontos-atual"
+          style="font-size: 2rem;">
+          0 pontos
+        </strong>
+
+        <div class="progresso">
+
+          <span id="barra-pontos"></span>
+
+        </div>
+
+        <p id="mensagem-pontos"></p>
+
+      </div>
+
+
+      <!-- Resgate do cupom -->
+
+      <div class="cartao">
+
+        <h2>
+          Cupom de R$ 10,00
+        </h2>
+
+        <p>
+          Ao atingir 500 pontos, você pode resgatar
+          um cupom de R$ 10,00 para usar em uma compra.
+        </p>
+
+
+        <button
+          id="botao-resgate"
+          class="botao"
+          onclick="resgatarCupomFidelidade()">
+
+          Resgatar cupom
+
+        </button>
+
+
+        <p id="status-cupom"></p>
+
+
+        <!-- Banner do cupom -->
+
+        <div
+          id="banner-cupom-fidelidade"
+          class="banner-cupom-fidelidade"
+          style="display: none;">
+
+          <p class="texto-destaque">
+            CUPOM RESGATADO
+          </p>
+
+          <h3>
+            R$ 10 de desconto
+          </h3>
+
+          <p>
+            Copie o código abaixo e cole no carrinho
+            para utilizar seu desconto.
+          </p>
+
+          <strong>
+            FIDELIDADE10
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="../js/aplicacao.js"></script>
+
+
+  <script>
+
+    
+
+    if (!usuarioEstaLogado()) {
+
+      localStorage.setItem(
+        "paginaDepoisDoLogin",
+        "fidelidade.html"
+      );
+
+      window.location.href = "login.html";
+
+    }
+
+
+    
+
+    function atualizarFidelidade() {
+
+      const pontos = pegarPontos();
+
+      const porcentagem =
+        Math.min((pontos / 500) * 100, 100);
+
+
+      document.querySelector(
+        "#pontos-atual"
+      ).textContent = pontos + " pontos";
+
+
+      document.querySelector(
+        "#barra-pontos"
+      ).style.width = porcentagem + "%";
+
+
+      const mensagem =
+        document.querySelector("#mensagem-pontos");
+
+
+      if (pontos < 500) {
+
+        mensagem.textContent =
+          (500 - pontos) +
+          " pontos para a próxima recompensa.";
+
+      } else {
+
+        mensagem.textContent =
+          "Você atingiu 500 pontos e já pode resgatar o cupom.";
+
+      }
+
+
+      const statusCupom =
+        document.querySelector("#status-cupom");
+
+      const bannerCupom =
+        document.querySelector("#banner-cupom-fidelidade");
+
+      const botao =
+        document.querySelector("#botao-resgate");
+
+
+     
+
+      if (
+        localStorage.getItem("cupomFidelidade")
+        === "resgatado"
+      ) {
+
+        statusCupom.textContent =
+          "Cupom de R$ 10 disponível para uso.";
+
+        botao.disabled = true;
+
+        bannerCupom.style.display = "block";
+
+      }
+
+    }
+
+
+    atualizarFidelidade();
+ 
+ 
+ </script>
+
+</body>
+
+</html>

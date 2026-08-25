@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acompanhar pedido — Rede Raízes</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  
+<header class="cabecalho-site">
+  <div class="conteudo-cabecalho">
+    <a class="logotipo" href="unidades.html">Rede Raízes</a>
+
+    <nav class="navegacao">
+      <a href="unidades.html">Início</a>
+      <a href="cardapio.html">Cardápio</a>
+      <a href="fidelidade.html">Fidelidade</a>
+      <a href="minha-conta.html">Minha Conta</a>
+    </nav>
+
+    <div class="lado-direito-cabecalho">
+      <a href="carrinho.html">🛒 Carrinho [<span class="quantidade-carrinho">0</span>]</a>
+      <a href="minha-conta.html">👤 <span class="nome-usuario">Entrar</span></a>
+    </div>
+  </div>
+</header>
+
+
+  <main class="conteudo">
+    
+<section class="secao-pagina">
+  <h1>Acompanhar Pedido #00847</h1>
+
+  <p class="texto-secundario">
+    Unidade: <b id="unidade"></b> • 13:45
+  </p>
+
+  <div class="linha-tempo">
+    <div class="etapa concluida">
+      <div class="marcador-etapa">✓</div>
+      <b>Pedido recebido</b>
+    </div>
+
+    <div class="etapa concluida">
+      <div class="marcador-etapa">✓</div>
+      <b>Em preparo</b>
+    </div>
+
+    <div class="etapa ativa">
+      <div class="marcador-etapa">3</div>
+      <b>Pronto para retirada</b>
+      <p class="texto-secundario">Retire no balcão com o código #00847</p>
+    </div>
+
+    <div class="etapa">
+      <div class="marcador-etapa">4</div>
+      <b>Retirado</b>
+    </div>
+  </div>
+
+  <div class="grade grade-2">
+    <div class="cartao">
+      <h2>Itens do pedido</h2>
+      <p>2 × X-Nordestino — R$ 49,80</p>
+      <p>1 × Suco de Caju — R$ 8,00</p>
+      <p class="total">Total: R$ 52,80</p>
+    </div>
+
+    <div class="cartao">
+      <h2>Informações de retirada</h2>
+      <p>Código: <b>#00847</b></p>
+      <p>Unidade: <b id="unidade-2"></b></p>
+      <p>Previsão: <b>~10 min restantes</b></p>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="rodape-site">
+    Rede Raízes do Nordeste
+  </footer>
+
+  
+<script src="../js/aplicacao.js"></script>
+<script src="../js/cardapio.js"></script>
+<script src="../js/pagamento.js"></script>
+<script src="../js/privacidade.js"></script>
+<script src="../js/conta.js"></script>
+
+
+  
+<script>
+  document.querySelector("#unidade").textContent =
+    nomeDaUnidade();
+
+  document.querySelector("#unidade-2").textContent =
+    nomeDaUnidade();
+</script>
+
+</body>
+</html>

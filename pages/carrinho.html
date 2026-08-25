@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho — Rede Raízes</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <header class="cabecalho-site">
+    <div class="conteudo-cabecalho">
+      <a class="logotipo" href="cardapio.html">Rede Raízes</a>
+      <nav class="navegacao">
+        <a href="cardapio.html">Cardápio</a>
+        <a href="fidelidade.html">Fidelidade</a>
+        <a href="minha-conta.html">Minha Conta</a>
+      </nav>
+      <div class="lado-direito-cabecalho">
+        <a href="carrinho.html">🛒 Carrinho [<span class="quantidade-carrinho">0</span>]</a>
+        <a href="minha-conta.html">👤 <span class="nome-usuario">Entrar</span></a>
+      </div>    </div>
+  </header>
+
+  <main class="conteudo">
+    <section class="secao-pagina">
+      <h1>Meu Carrinho</h1>
+
+      <div id="itens" class="cartao"></div>
+
+      <div class="cartao">
+        <h2>Cupom de desconto</h2>
+
+        <p class="texto-secundario">
+          Se você tiver um cupom, informe o código abaixo.
+        </p>
+
+        <div class="campo">
+          <label for="campo-cupom">Código do cupom</label>
+          <input id="campo-cupom" placeholder="RAIZES10">
+        </div>
+
+        <button class="botao secundario" onclick="usarCupom()">
+          Aplicar cupom
+        </button>
+
+        <div id="mensagem-cupom"></div>
+      </div>
+
+      <div class="cartao">
+        <div id="resumo"></div>
+
+        <a class="botao" href="pagamento.html">
+          Ir para pagamento
+        </a>
+
+        <a class="botao secundario" href="cardapio.html">
+          Continuar comprando
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/aplicacao.js"></script>
+
+  <script>
+    if (!pegarUnidade()) {
+      localStorage.setItem("paginaDepoisDaUnidade", "carrinho.html");
+      window.location.href = "unidades.html";
+    }
+
+    const areaItens = document.querySelector("#itens");
+    const areaResumo = document.querySelector("#resumo");
+    const mensagemCupom = document.querySelector("#mensagem-cupom");
+
+    function mostrarCarrinho() {
+      const carrinho = pegarCarrinho();
+
+      if (carrinho.length === 0) {
+        areaItens.innerHTML =
+          "<p>Seu carrinho está vazio.</p>";
+      } else {
+        areaItens.innerHTML = "";
+
+        carrinho.forEach(function(item) {
+          areaItens.innerHTML += `
+            <div class="item-carrinho">
+              <div>
+                <h3>${item.nome}</h3>
+                <p class="texto-secundario">${item.descricao}</p>
+                <p>${formatarPreco(item.preco)} cada</p>
+              </div>
+
+              <div class="quantidade">
+                <button onclick="mudarQuantidade(${item.id}, -1)">−</button>
+                <b>${item.quantidade}</b>
+                <button onclick="mudarQuantidade(${item.id}, 1)">+</button>
+              </div>
+
+              <strong>
+                ${formatarPreco(item.preco * item.quantidade)}
+              </strong>
+
+              <button
+                class="botao perigo"
+                onclick="removerDoCarrinho(${item.id})">
+                Remover
+              </button>
+            </div>
+          `;
+        });
+      }
+
+      mostrarResumo();
+    }
+
+    function mostrarResumo() {
+      const totais = calcularTotais();
+
+      areaResumo.innerHTML = `
+        <div class="linha-resumo">
+          <span>Subtotal</span>
+          <b>${formatarPreco(totais.subtotal)}</b>
+        </div>
+
+        <div class="linha-resumo">
+          <span>Desconto</span>
+          <b>- ${formatarPreco(totais.desconto)}</b>
+        </div>
+
+        <div class="linha-resumo total">
+          <span>Total</span>
+          <b>${formatarPreco(totais.total)}</b>
+        </div>
+      `;
+    }
+
+    function usarCupom() {
+      const codigo =
+        document.querySelector("#campo-cupom").value;
+
+      if (aplicarCupom(codigo)) {
+        const cupom = localStorage.getItem("cupom");
+        const mensagem = cupom === "RAIZES10"
+          ? "Cupom de 10% aplicado."
+          : "Cupom de R$ 10 aplicado.";
+
+        mensagemCupom.innerHTML =
+          '<div class="aviso sucesso">' + mensagem + '</div>';
+      } else {
+        mensagemCupom.innerHTML =
+          '<div class="aviso erro">Cupom inválido.</div>';
+      }
+
+      mostrarResumo();
+    }
+
+    mostrarCarrinho();
+  </script>
+</body>
+</html>

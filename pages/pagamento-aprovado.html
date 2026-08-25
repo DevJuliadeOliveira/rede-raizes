@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pagamento aprovado — Rede Raízes</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <main class="conteudo">
+
+    <section class="secao-pagina estreito">
+
+      <div class="cartao resultado resultado-sucesso">
+
+        <div class="icone-resultado">
+          ✓
+        </div>
+
+        <h1>
+          Pagamento aprovado!
+        </h1>
+
+        <p>
+          Seu pedido foi confirmado e está sendo preparado.
+        </p>
+
+        <p>
+          Número do pedido:
+          <b>#00847</b>
+        </p>
+
+        <p>
+          Total pago:
+          <b id="total-pago"></b>
+        </p>
+
+        <p>
+          Pontos ganhos nesta compra:
+          <b id="pontos-ganhos"></b>
+        </p>
+
+        <a
+          class="botao"
+          href="acompanhar-pedido.html">
+          Acompanhar pedido
+        </a>
+
+        <a
+          class="botao secundario"
+          href="cardapio.html">
+          Fazer novo pedido
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="../js/aplicacao.js"></script>
+
+  <script>
+
+    const totalPago =
+      Number(
+        localStorage.getItem("ultimoTotalPago")
+      ) || 0;
+
+
+    let pontosGanhos = 0;
+
+
+    if (
+      localStorage.getItem(
+        "compraAguardandoConfirmacao"
+      ) === "sim"
+    ) {
+
+      pontosGanhos =
+        ganharPontosDaCompra(totalPago);
+
+      localStorage.removeItem(
+        "compraAguardandoConfirmacao"
+      );
+
+    } else {
+
+      pontosGanhos =
+        Number(
+          localStorage.getItem(
+            "ultimoPontosGanhos"
+          )
+        ) || 0;
+
+    }
+
+
+    localStorage.setItem(
+      "ultimoPontosGanhos",
+      pontosGanhos
+    );
+
+
+    document.querySelector(
+      "#total-pago"
+    ).textContent =
+      formatarPreco(totalPago);
+
+
+    document.querySelector(
+      "#pontos-ganhos"
+    ).textContent =
+      "+" + pontosGanhos + " pontos";
+
+
+   
+
+    const cupomUsado =
+      localStorage.getItem("cupom");
+
+
+    
+
+    if (cupomUsado === "FIDELIDADE10") {
+
+      localStorage.removeItem(
+        "cupomFidelidade"
+      );
+
+    }
+
+
+   
+
+    if (cupomUsado === "RAIZES10") {
+
+      localStorage.setItem(
+        "cupomRaizes10",
+        "usado"
+      );
+
+    }
+
+
+  
+
+    localStorage.removeItem(
+      "cupom"
+    );
+
+
+
+    limparCarrinho();
+
+  </script>
+
+</body>
+
+</html>

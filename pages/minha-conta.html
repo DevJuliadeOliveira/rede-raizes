@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha Conta — Rede Raízes</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <header class="cabecalho-site">
+    <div class="conteudo-cabecalho">
+      <a class="logotipo" href="cardapio.html">Rede Raízes</a>
+      <nav class="navegacao">
+        <a href="cardapio.html">Cardápio</a>
+        <a href="fidelidade.html">Fidelidade</a>
+        <a href="minha-conta.html">Minha Conta</a>
+      </nav>
+      <div class="lado-direito-cabecalho">
+        <a href="carrinho.html">🛒 Carrinho [<span class="quantidade-carrinho">0</span>]</a>
+        <a href="minha-conta.html">👤 <span class="nome-usuario">Entrar</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <section class="secao-pagina">
+      <h1>Minha Conta</h1>
+
+      <div class="area-conta">
+        <aside class="cartao menu-conta">
+          <a href="alterar-dados.html">Meus Dados</a>
+          <a href="fidelidade.html">Fidelidade e Pontos</a>
+          <a href="acompanhar-pedido.html">Meus Pedidos</a>
+          <a href="consentimentos.html">Gerenciar Consentimentos</a>
+          <a href="privacidade.html">Política de Privacidade</a>
+
+          <button class="botao perigo" onclick="fazerLogout()">
+            Sair da conta
+          </button>
+        </aside>
+
+        <section class="cartao">
+          <h2>Dados do perfil</h2>
+
+          <p>
+            Nome:
+            <b id="nome">Cliente</b>
+          </p>
+
+          <p>
+            E-mail:
+            <b id="email">cliente@email.com</b>
+          </p>
+
+          <p>
+            Telefone:
+            <b id="telefone">—</b>
+          </p>
+
+          <a class="botao" href="alterar-dados.html">
+            Alterar dados
+          </a>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/aplicacao.js"></script>
+
+  <script>
+    if (!usuarioEstaLogado()) {
+      localStorage.setItem("paginaDepoisDoLogin", "minha-conta.html");
+      window.location.href = "login.html";
+    }
+
+    const usuario =
+      JSON.parse(localStorage.getItem("usuario")) || {};
+
+    document.querySelector("#nome").textContent =
+      usuario.nome || "Cliente";
+
+    document.querySelector("#email").textContent =
+      usuario.email || "cliente@email.com";
+
+    document.querySelector("#telefone").textContent =
+      usuario.telefone || "—";
+  </script>
+</body>
+</html>

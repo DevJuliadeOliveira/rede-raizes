@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alterar dados — Rede Raízes</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  
+<header class="cabecalho-site">
+  <div class="conteudo-cabecalho">
+    <a class="logotipo" href="unidades.html">Rede Raízes</a>
+
+    <nav class="navegacao">
+      <a href="unidades.html">Início</a>
+      <a href="cardapio.html">Cardápio</a>
+      <a href="fidelidade.html">Fidelidade</a>
+      <a href="minha-conta.html">Minha Conta</a>
+    </nav>
+
+    <div class="lado-direito-cabecalho">
+      <a href="carrinho.html">🛒 Carrinho [<span class="quantidade-carrinho">0</span>] </a>
+      <a href="minha-conta.html">👤 <span class="nome-usuario">Entrar</span></a>
+    </div>
+  </div>
+</header>
+
+
+  <main class="conteudo">
+    
+<section class="secao-pagina estreito">
+  <div class="cartao">
+    <h1>Alterar dados</h1>
+
+    <form
+      class="formulario"
+      onsubmit="event.preventDefault(); salvarPerfil();"
+    >
+      <div class="campo">
+        <label>Nome completo</label>
+        <input id="nome-perfil">
+      </div>
+
+      <div class="campo">
+        <label>E-mail</label>
+        <input id="email-perfil" type="email">
+      </div>
+
+      <div class="campo">
+        <label>Telefone</label>
+        <input id="telefone-perfil">
+      </div>
+
+      <h2>Alterar senha</h2>
+
+      <div class="campo">
+        <label>Senha atual</label>
+        <input type="password">
+      </div>
+
+      <div class="campo">
+        <label>Nova senha</label>
+        <input type="password">
+      </div>
+
+      <div class="campo">
+        <label>Confirmar nova senha</label>
+        <input type="password">
+      </div>
+
+      <button class="botao">
+        Salvar alterações
+      </button>
+
+      <a class="botao secundario" href="minha-conta.html">
+        Cancelar
+      </a>
+    </form>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="rodape-site">
+    Rede Raízes do Nordeste
+  </footer>
+
+  
+<script src="../js/aplicacao.js"></script>
+<script src="../js/cardapio.js"></script>
+<script src="../js/pagamento.js"></script>
+<script src="../js/privacidade.js"></script>
+<script src="../js/conta.js"></script>
+
+
+  
+<script>
+  if (!usuarioEstaLogado()) {
+    localStorage.setItem("paginaDepoisDoLogin", "alterar-dados.html");
+    window.location.href = "login.html";
+  }
+
+  const usuario = JSON.parse(
+    localStorage.getItem("usuario")
+  ) || {};
+
+  document.querySelector("#nome-perfil").value =
+    usuario.nome || "";
+
+  document.querySelector("#email-perfil").value =
+    usuario.email || "";
+
+  document.querySelector("#telefone-perfil").value =
+    usuario.telefone || "";
+
+</script>
+
+</body>
+</html>

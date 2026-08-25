@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escolha a unidade — Rede Raízes</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  
+<header class="cabecalho-site">
+  <div class="conteudo-cabecalho">
+    <a class="logotipo" href="unidades.html">Rede Raízes</a>
+
+    <nav class="navegacao">
+      <a href="unidades.html">Início</a>
+      <a href="cardapio.html">Cardápio</a>
+      <a href="fidelidade.html">Fidelidade</a>
+      <a href="minha-conta.html">Minha Conta</a>
+    </nav>
+
+    <div class="lado-direito-cabecalho">
+      <a href="carrinho.html">🛒 Carrinho [<span class="quantidade-carrinho">0</span>]</a>
+      <a href="minha-conta.html">👤 <span class="nome-usuario">Entrar</span></a>
+    </div>
+  </div>
+</header>
+
+
+  <main class="conteudo">
+    
+<section class="secao-pagina">
+  <p class="texto-destaque">Rede Raízes do Nordeste</p>
+  <h1>Escolha a unidade</h1>
+  <p class="texto-secundario">
+    Selecione onde deseja realizar e retirar seu pedido.
+  </p>
+
+  <div class="cartao">
+    <div class="campo-busca">
+      <label for="busca">Buscar por cidade ou bairro</label>
+      <input
+        id="campo-busca"
+        type="search"
+        placeholder="Ex.: Centro, Fortaleza..."
+      >
+    </div>
+
+
+    <div id="lista-unidades" class="lista-lista-unidades"></div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="rodape-site">
+    Rede Raízes do Nordeste
+  </footer>
+
+  
+<script src="../js/aplicacao.js"></script>
+<script src="../js/cardapio.js"></script>
+<script src="../js/pagamento.js"></script>
+<script src="../js/privacidade.js"></script>
+<script src="../js/conta.js"></script>
+
+
+  
+<script>
+  const areaUnidades = document.querySelector("#lista-unidades");
+  const busca = document.querySelector("#campo-busca");
+
+  
+
+  
+  function mostrarUnidades(texto = "") {
+    areaUnidades.innerHTML = "";
+
+    unidades.forEach(function(unidade) {
+      if (!unidade.nome.toLowerCase().includes(texto.toLowerCase())) {
+        return;
+      }
+
+      areaUnidades.innerHTML += `
+        <article class="cartao-unidade">
+          <div>
+            <h3>${unidade.nome}</h3>
+            <p class="texto-secundario">${unidade.distancia}</p>
+          </div>
+
+          <button
+            class="botao"
+            onclick="escolherUnidade(${unidade.id})">
+            Selecionar
+          </button>
+        </article>
+      `;
+    });
+  }
+
+  // Salva a unidade e vai para o cardápio
+  function escolherUnidade(id) {
+    const unidade = unidades.find(function(item) {
+      return item.id === id;
+    });
+
+    salvarUnidade(unidade);
+    const pagina = localStorage.getItem("paginaDepoisDaUnidade");
+
+    if (pagina) {
+      localStorage.removeItem("paginaDepoisDaUnidade");
+      window.location.href = pagina;
+    } else {
+      window.location.href = "cardapio.html";
+    }
+  }
+
+  busca.addEventListener("input", function() {
+    mostrarUnidades(busca.value);
+  });
+
+  // Mostra os cards assim que a página abre
+  mostrarUnidades();
+</script>
+
+</body>
+</html>

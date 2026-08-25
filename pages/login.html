@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar — Rede Raízes</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <main class="conteudo">
+    <section class="secao-pagina estreito">
+      <div class="cartao">
+        <p class="texto-destaque">Rede Raízes do Nordeste</p>
+        <h1>Entrar</h1>
+
+        <form class="formulario" onsubmit="event.preventDefault(); entrar();">
+          <div class="campo">
+            <label>E-mail</label>
+            <input type="email" required>
+          </div>
+
+          <div class="campo">
+            <label>Senha</label>
+            <input type="password" required>
+          </div>
+
+          <button class="botao">Entrar</button>
+
+          <a href="recuperar-senha.html">Esqueci minha senha</a>
+          <a href="cadastro.html">Ainda não tenho conta</a>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/aplicacao.js"></script>
+  <script src="../js/privacidade.js"></script>
+</body>
+</html>

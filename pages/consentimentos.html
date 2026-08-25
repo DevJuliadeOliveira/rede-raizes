@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar consentimentos — Rede Raízes</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  
+<header class="cabecalho-site">
+  <div class="conteudo-cabecalho">
+    <a class="logotipo" href="unidades.html">Rede Raízes</a>
+
+    <nav class="navegacao">
+      <a href="unidades.html">Início</a>
+      <a href="cardapio.html">Cardápio</a>
+      <a href="fidelidade.html">Fidelidade</a>
+      <a href="minha-conta.html">Minha Conta</a>
+    </nav>
+
+    <div class="lado-direito-cabecalho">
+      <a href="carrinho.html">🛒 Carrinho [<span class="quantidade-carrinho">0</span>]</a>
+      <a href="minha-conta.html">👤 <span class="nome-usuario">Entrar</span></a>
+    </div>
+  </div>
+</header>
+
+
+  <main class="conteudo">
+    
+<section class="secao-pagina estreito">
+  <div class="cartao">
+    <h1>Gerenciar Consentimentos</h1>
+
+    <p class="texto-secundario">
+      Gerencie suas permissões de acordo com a LGPD.<br>
+      Você pode revogar consentimentos a qualquer momento.
+    </p>
+
+    <div class="item-consentimento">
+      <div>
+        <h3>Política de Privacidade</h3>
+        <p class="texto-secundario">
+          Obrigatório para uso do aplicativo.<br>
+          <i>Aceito em: 10/03/2025</i><br>
+          <i>* Não pode ser revogado sem encerrar a conta.</i>
+        </p>
+      </div>
+
+      <input type="checkbox" checked disabled>
+    </div>
+
+    <div class="item-consentimento">
+      <div>
+        <h3>Receber ofertas e promoções</h3>
+        <p class="texto-secundario">
+          E-mail, SMS e notificações push.<br>
+          <i>Aceito em: 10/08/2026</i>
+        </p>
+      </div>
+
+      <input id="alternar-ofertas" type="checkbox">
+    </div>
+
+    <button
+      class="botao"
+      onclick="salvarConsentimentos()">
+      Salvar preferências
+    </button>
+
+    <button
+      class="botao perigo"
+      onclick="pedirExclusao()">
+      Solicitar exclusão dos meus dados
+    </button>
+
+    <p class="texto-secundario">
+      Para dúvidas: privacidade@redesraizes.com.br<br>
+      (LGPD Art. 18)
+    </p>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="rodape-site">
+    Rede Raízes do Nordeste
+  </footer>
+
+  
+<script src="../js/aplicacao.js"></script>
+<script src="../js/cardapio.js"></script>
+<script src="../js/pagamento.js"></script>
+<script src="../js/privacidade.js"></script>
+<script src="../js/conta.js"></script>
+
+
+  
+<script>
+  const ofertasSalvas =
+    localStorage.getItem("ofertas") === "true";
+
+  document.querySelector("#alternar-ofertas").checked =
+    ofertasSalvas;
+</script>
+
+</body>
+</html>

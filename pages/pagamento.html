@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento — Rede Raízes</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <header class="cabecalho-site">
+    <div class="conteudo-cabecalho">
+      <a class="logotipo" href="cardapio.html">Rede Raízes</a>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <section class="secao-pagina">
+      <h1>Pagamento / Conferência</h1>
+
+      <div class="grade grade-2">
+        <section class="cartao">
+          <h2>Resumo do pedido</h2>
+          <div id="resumo-pagamento"></div>
+        </section>
+
+        <section class="cartao">
+          <h2>Forma de pagamento</h2>
+
+          <div class="opcoes-pagamento">
+            <button
+              class="opcao-pagamento selecionado"
+              data-pagamento="credito"
+              onclick="escolherPagamento('credito')">
+              Cartão de crédito
+            </button>
+
+            <button
+              class="opcao-pagamento"
+              data-pagamento="debito"
+              onclick="escolherPagamento('debito')">
+              Cartão de débito
+            </button>
+
+            <button
+              class="opcao-pagamento"
+              data-pagamento="pix"
+              onclick="escolherPagamento('pix')">
+              PIX
+            </button>
+          </div>
+
+          <div id="campos-pagamento" style="margin-top: 18px;"></div>
+
+          <button
+            class="botao"
+            onclick="confirmarPagamento()">
+            Confirmar pagamento
+          </button>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/aplicacao.js"></script>
+  <script src="../js/pagamento.js"></script>
+
+  <script>
+    if (!usuarioEstaLogado()) {
+      localStorage.setItem("paginaDepoisDoLogin", "pagamento.html");
+      window.location.href = "login.html";
+    } else if (!pegarUnidade()) {
+      localStorage.setItem("paginaDepoisDaUnidade", "pagamento.html");
+      window.location.href = "unidades.html";
+    } else if (pegarCarrinho().length === 0) {
+      window.location.href = "cardapio.html";
+    }
+
+    const totais = calcularTotais();
+
+    document.querySelector("#resumo-pagamento").innerHTML = `
+      <p>Unidade: <b>${nomeDaUnidade()}</b></p>
+
+      <div class="linha-resumo">
+        <span>Subtotal</span>
+        <b>${formatarPreco(totais.subtotal)}</b>
+      </div>
+
+      <div class="linha-resumo">
+        <span>Desconto</span>
+        <b>- ${formatarPreco(totais.desconto)}</b>
+      </div>
+
+      <div class="linha-resumo total">
+        <span>Total</span>
+        <b>${formatarPreco(totais.total)}</b>
+      </div>
+    `;
+
+    escolherPagamento("credito");
+  </script>
+</body>
+</html>

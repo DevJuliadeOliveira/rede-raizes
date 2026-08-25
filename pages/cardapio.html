@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cardápio — Rede Raízes</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <header class="cabecalho-site">
+    <div class="conteudo-cabecalho">
+
+      <a class="logotipo" href="unidades.html">
+        Rede Raízes
+      </a>
+
+      <nav class="navegacao">
+        <a href="unidades.html">Unidades</a>
+        <a href="cardapio.html">Cardápio</a>
+        <a href="fidelidade.html">Fidelidade</a>
+        <a href="minha-conta.html">Minha Conta</a>
+      </nav>
+
+      <div class="lado-direito-cabecalho">
+
+        <a href="carrinho.html">
+          🛒 Carrinho [<span class="quantidade-carrinho">0</span>]
+        </a>
+
+        <a href="minha-conta.html">
+          👤 <span class="nome-usuario">Entrar</span>
+        </a>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- promoção    -->
+
+  <section class="banner-promocao">
+
+    <div>
+
+      <p class="texto-destaque">
+        PROMOÇÃO
+      </p>
+
+      <h2>
+        10% OFF no seu pedido
+      </h2>
+
+      <p>
+        Use o cupom <strong>RAIZES10</strong>
+        e ganhe 10% de desconto.
+      </p>
+
+    </div>
+
+    <div class="codigo-cupom">
+
+      <span>CUPOM</span>
+
+      <strong>
+        RAIZES10
+      </strong>
+
+    </div>
+
+  </section>
+
+
+  <main class="conteudo">
+
+    <section class="secao-pagina">
+
+      <p class="texto-destaque">
+        Unidade:
+        <span id="unidade-escolhida"></span>
+      </p>
+
+      <h1>
+        Cardápio
+      </h1>
+
+
+      <!-- categorias -->
+
+      <div class="categorias">
+
+        <button
+          class="ativo"
+          onclick="mostrarCategoria('Lanches', this)">
+          Lanches
+        </button>
+
+        <button
+          onclick="mostrarCategoria('Combos', this)">
+          Combos
+        </button>
+
+        <button
+          onclick="mostrarCategoria('Bebidas', this)">
+          Bebidas
+        </button>
+
+      </div>
+
+      <section
+        id="produtos"
+        class="grade-produtos">
+    
+        <article
+          class="cartao-produto produto-lanches">
+
+          <img
+            class="imagem-produto"
+            src="../imagens/hamburger.jpg"
+            alt="X-Nordestino">
+
+          <h3>
+            X-Nordestino
+          </h3>
+
+          <p class="texto-secundario">
+            Carne de sol, queijo coalho e cebola.
+          </p>
+
+          <div class="informacoes-produto">
+
+            <strong class="preco">
+              R$ 24,90
+            </strong>
+
+            <button
+              class="botao pequeno"
+              onclick="adicionarCarrinho(1)">
+              Adicionar
+            </button>
+
+          </div>
+
+        </article>
+
+        <article
+          class="cartao-produto produto-lanches">
+
+          <img
+            class="imagem-produto"
+            src="../imagens/hamburger.jpg"
+            alt="Baião Burger">
+
+          <h3>
+            Baião Burger
+          </h3>
+
+          <p class="texto-secundario">
+            Carne, feijão verde, queijo e coentro.
+          </p>
+
+          <div class="informacoes-produto">
+
+            <strong class="preco">
+              R$ 27,50
+            </strong>
+
+            <button
+              class="botao pequeno"
+              onclick="adicionarCarrinho(2)">
+              Adicionar
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article
+          class="cartao-produto produto-lanches">
+
+          <img
+            class="imagem-produto"
+            src="../imagens/hamburger.jpg"
+            alt="Cangaço Duplo">
+
+          <h3>
+            Cangaço Duplo
+          </h3>
+
+          <p class="texto-secundario">
+            Carne assada, muçarela e pimenta.
+          </p>
+
+          <div class="informacoes-produto">
+
+            <strong class="preco">
+              R$ 32,00
+            </strong>
+
+            <button
+              class="botao pequeno"
+              onclick="adicionarCarrinho(3)">
+              Adicionar
+            </button>
+
+          </div>
+
+        </article>
+
+        <article
+          class="cartao-produto produto-combos">
+
+          <img
+            class="imagem-produto"
+            src="../imagens/hamburger.jpg"
+            alt="Combo Família">
+
+          <h3>
+            Combo Família
+          </h3>
+
+          <p class="texto-secundario">
+            Combo para compartilhar.
+          </p>
+
+          <div class="informacoes-produto">
+
+            <strong class="preco">
+              R$ 89,90
+            </strong>
+
+            <button
+              class="botao pequeno"
+              onclick="adicionarCarrinho(4)">
+              Adicionar
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- Suco de Caju -->
+
+        <article
+          class="cartao-produto produto-bebidas">
+
+          <img
+            class="imagem-produto"
+            src="../imagens/suco.jpg"
+            alt="Suco de Caju">
+
+          <h3>
+            Suco de Caju
+          </h3>
+
+          <p class="texto-secundario">
+            Caju natural, 400 ml.
+          </p>
+
+          <div class="informacoes-produto">
+
+            <strong class="preco">
+              R$ 8,00
+            </strong>
+
+            <button
+              class="botao pequeno"
+              onclick="adicionarCarrinho(5)">
+              Adicionar
+            </button>
+
+          </div>
+
+        </article>
+
+      </section>
+
+
+      <br>
+
+      <a
+        class="botao"
+        href="carrinho.html">
+        Ver carrinho
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <script src="../js/aplicacao.js"></script>
+
+
+  <script>
+
+    /*
+      Verifica se uma unidade foi escolhida.
+    */
+
+    if (!pegarUnidade()) {
+
+      localStorage.setItem(
+        "paginaDepoisDaUnidade",
+        "cardapio.html"
+      );
+
+      window.location.href = "unidades.html";
+
+    } else {
+
+      document.querySelector(
+        "#unidade-escolhida"
+      ).textContent = nomeDaUnidade();
+
+    }
+
+
+    /*
+      Mostra apenas a categoria escolhida.
+    */
+
+    function mostrarCategoria(categoria, botao) {
+
+      const botoes =
+        document.querySelectorAll(".categorias button");
+
+      botoes.forEach(function(item) {
+
+        item.classList.remove("ativo");
+
+      });
+
+      botao.classList.add("ativo");
+
+
+      const produtos =
+        document.querySelectorAll(".cartao-produto");
+
+
+      produtos.forEach(function(produto) {
+
+        produto.style.display = "none";
+
+      });
+
+
+      if (categoria === "Lanches") {
+
+        document
+          .querySelectorAll(".produto-lanches")
+          .forEach(function(produto) {
+
+            produto.style.display = "grid";
+
+          });
+
+      }
+
+
+      if (categoria === "Combos") {
+
+        document
+          .querySelectorAll(".produto-combos")
+          .forEach(function(produto) {
+
+            produto.style.display = "grid";
+
+          });
+
+      }
+
+
+      if (categoria === "Bebidas") {
+
+        document
+          .querySelectorAll(".produto-bebidas")
+          .forEach(function(produto) {
+
+            produto.style.display = "grid";
+
+          });
+
+      }
+
+    }
+
+
+    /*
+      Começa mostrando os lanches.
+    */
+
+    mostrarCategoria(
+      "Lanches",
+      document.querySelector(".categorias button")
+    );
+
+  </script>
+
+</body>
+</html>

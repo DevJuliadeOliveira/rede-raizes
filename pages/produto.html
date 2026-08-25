@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produto — Rede Raízes</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  
+<header class="cabecalho-site">
+  <div class="conteudo-cabecalho">
+    <a class="logotipo" href="unidades.html">Rede Raízes</a>
+
+    <nav class="navegacao">
+      <a href="unidades.html">Início</a>
+      <a href="cardapio.html">Cardápio</a>
+      <a href="fidelidade.html">Fidelidade</a>
+      <a href="minha-conta.html">Minha Conta</a>
+    </nav>
+
+    <div class="lado-direito-cabecalho">
+      <a href="carrinho.html">🛒 Carrinho [<span class="quantidade-carrinho">0</span>]</a>
+      <a href="minha-conta.html">👤 <span class="nome-usuario">Entrar</span></a>
+    </div>
+  </div>
+</header>
+
+
+  <main class="conteudo">
+    
+<section class="secao-pagina estreito">
+  <div class="cartao">
+    <div class="imagem-produto">Foto do produto</div>
+
+    <p class="texto-destaque">Detalhes do produto</p>
+    <h1>X-Nordestino</h1>
+
+    <p>
+      Carne de sol, queijo coalho e cebola.
+    </p>
+
+    <strong class="preco">R$ 24,90</strong>
+
+    <br><br>
+
+    <button
+      class="botao"
+      onclick="adicionarCarrinho(1)">
+      Adicionar ao carrinho
+    </button>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="rodape-site">
+    Rede Raízes do Nordeste
+  </footer>
+
+  
+<script src="../js/aplicacao.js"></script>
+<script src="../js/cardapio.js"></script>
+<script src="../js/pagamento.js"></script>
+<script src="../js/privacidade.js"></script>
+<script src="../js/conta.js"></script>
+
+
+  
+  <script>
+    if (!pegarUnidade()) {
+      localStorage.setItem("paginaDepoisDaUnidade", "produto.html");
+      window.location.href = "unidades.html";
+    }
+  </script>
+</body>
+</html>
